@@ -10,7 +10,7 @@ function App() {
     if (event) {
       const eventStr = JSON.stringify(event.data);
       console.log("Received event.data from listener 'message'", eventStr);
-      setmessage(event.data);
+      setmessage(eventStr);
     }
   }
   
