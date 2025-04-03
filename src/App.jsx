@@ -31,8 +31,10 @@ function App() {
   return (
     <div>
       POC-CMW
-      <h3>Message A: {message}</h3>
-      <h3>Message B: {message2}</h3>
+      <h3>Message A</h3>
+      <p>{message}</p>
+      <h3>Message</h3>
+      <p>{message2}</p>
     </div>
   )
 }
