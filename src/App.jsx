@@ -16,20 +16,26 @@ function App() {
 
   const sendMessageToNative = () => {
     window.webkit.messageHandlers.nativeHandler.postMessage("Hola desde React");
-}
-  
-  useEffect(()  => {
+  }
+
+  useEffect(() => {
     window.addEventListener('message', listenEvent);
     return () => {
       window.removeEventListener('message', listenEvent);
     }
   }, [])
-  
+
   useEffect(() => {
     window.receiveMessageFromNative = (msg) => {
       console.log("Received from 'receiveMessageFromNative'=======", msg);
       setmessage2(msg);
     };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('DOMContentLoaded', function () {
+      window.webkit.messageHandlers.iOSNative.postMessage({ action: "pause" });
+    });
   }, []);
 
   return (
