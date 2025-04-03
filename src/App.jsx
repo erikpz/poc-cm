@@ -9,7 +9,7 @@ function App() {
   const listenEvent = (event) => {
     if (event) {
       const eventStr = JSON.stringify(event.data);
-      console.log("Received event.data from listener 'message'", eventStr);
+      console.log("Received event.data from listener 'message'--------", eventStr);
       setmessage(eventStr);
     }
   }
@@ -23,7 +23,7 @@ function App() {
   
   useEffect(() => {
     window.receiveMessageFromNative = (msg) => {
-      console.log("Received from 'receiveMessageFromNative'", msg);
+      console.log("Received from 'receiveMessageFromNative'=======", msg);
       setmessage2(msg);
     };
   }, []);
@@ -31,9 +31,9 @@ function App() {
   return (
     <div>
       POC-CMW
-      <h3>Message A:</h3>
+      <h3>Message A (event.data from listener):</h3>
       <p>{message}</p>
-      <h3>Message B:</h3>
+      <h3>Message B (receiveMessageFromNative):</h3>
       <p>{message2}</p>
     </div>
   )
