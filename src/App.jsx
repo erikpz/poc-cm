@@ -7,8 +7,11 @@ function App() {
   const [message2, setmessage2] = useState(null);
 
   const listenEvent = (event) => {
-    console.log("Received event.data from listener 'message'", event.data);
-    setmessage(event.data);
+    if (event) {
+      const eventStr = JSON.stringify(event.data);
+      console.log("Received event.data from listener 'message'", eventStr);
+      setmessage(event.data);
+    }
   }
   
   useEffect(()  => {
