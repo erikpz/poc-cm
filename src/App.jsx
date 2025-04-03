@@ -13,6 +13,10 @@ function App() {
       setmessage(eventStr);
     }
   }
+
+  const sendMessageToNative = () => {
+    window.webkit.messageHandlers.nativeHandler.postMessage("Hola desde React");
+}
   
   useEffect(()  => {
     window.addEventListener('message', listenEvent);
@@ -35,6 +39,8 @@ function App() {
       <p>{message}</p>
       <h3>Message B (receiveMessageFromNative):</h3>
       <p>{message2}</p>
+
+      <button onClick={sendMessageToNative}>Enviar a App Nativa</button>
     </div>
   )
 }
