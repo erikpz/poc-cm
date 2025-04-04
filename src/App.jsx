@@ -5,6 +5,7 @@ function App() {
 
   const [message, setmessage] = useState(null);
   const [message2, setmessage2] = useState(null);
+  const [message3, setmessage3] = useState(null);
 
   const listenEvent = (event) => {
     if (event) {
@@ -16,6 +17,10 @@ function App() {
 
   const sendMessageToNative = () => {
     window.webkit.messageHandlers.nativeHandler.postMessage("Hola desde React");
+  }
+
+  const showMessageFromIOS = (msg) => {
+    setmessage3(msg)
   }
 
   useEffect(() => {
@@ -45,6 +50,8 @@ function App() {
       <p>{message}</p>
       <h3>Message B (receiveMessageFromNative):</h3>
       <p>{message2}</p>
+      <h3>From IOS: </h3>
+      <p>{message3}</p>
 
       <button onClick={sendMessageToNative}>Enviar a App Nativa</button>
     </div>
