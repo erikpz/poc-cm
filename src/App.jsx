@@ -15,8 +15,11 @@ function App() {
     }
   }
 
-  const sendMessageToNative = () => {
+  const sendMessageToNativeIos = () => {
     window.webkit.messageHandlers.nativeHandler.postMessage("Hola desde React");
+  }
+  const sendMessageToNativeAndroid = () => {
+    window.AndroidInterface.sendDataToAndroid("Hola desde la WebView");
   }
 
   const showMessageFromIOS = (msg) => {
@@ -53,7 +56,8 @@ function App() {
       <h3>From IOS: </h3>
       <p>{message3}</p>
 
-      <button onClick={sendMessageToNative}>Enviar a App Nativa</button>
+      <button onClick={sendMessageToNativeIos}>Enviar a App Nativa IOS</button>
+      <button onClick={sendMessageToNativeAndroid}>Enviar a App Nativa ANDROID</button>
     </div>
   )
 }
