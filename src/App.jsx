@@ -37,12 +37,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (typeof window.AndroidInterface !== 'undefined') {
-      setos("Android");
-    } else if (typeof window.webkit !== 'undefined' && window.webkit.messageHandlers?.iosInterface) {
-      setos("IOS");
+    const platform = window.__APP_PLATFORM__ || 'web';
+
+    if (platform === 'android') {
+      setos('android');
+    } else if (platform === 'ios') {
+      setos('ios');
     } else {
-      console.log("No hay puente nativo, estás en navegador normal");
+      setos('web');
     }
   }, []);
 
