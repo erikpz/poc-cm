@@ -5,7 +5,7 @@ function App() {
 
   const [message, setmessage] = useState(null);
   const [message2, setmessage2] = useState(null);
-  const [message3, setmessage3] = useState(null);
+  const [os, setos] = useState(null);
 
   const listenEvent = (event) => {
     if (event) {
@@ -37,9 +37,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.addEventListener('DOMContentLoaded', function () {
-      window.webkit.messageHandlers.iOSNative.postMessage({ action: "pause" });
-    });
+    if (typeof window.AndroidInterface !== 'undefined') {
+      setos("Android");
+    } else if (typeof window.webkit !== 'undefined' && window.webkit.messageHandlers?.iosInterface) {
+      setos("IOS");
+    } else {
+      console.log("No hay puente nativo, estás en navegador normal");
+    }
   }, []);
 
   return (
@@ -49,6 +53,7 @@ function App() {
       <p>{message}</p>
       <h3>Message B (receiveMessageFromNative):</h3>
       <p>{message2}</p>
+      <h3>OS: {os}</h3>
 
       <button onClick={sendMessageToNativeIos}>Enviar a App Nativa IOS</button>
       <button onClick={sendMessageToNativeAndroid}>Enviar a App Nativa ANDROID</button>
