@@ -37,15 +37,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const platform = window.__APP_PLATFORM__ || 'web';
-
-    if (platform === 'android') {
-      setos('android');
-    } else if (platform === 'ios') {
-      setos('ios');
-    } else {
-      setos('web');
-    }
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    setos(ua)
   }, []);
 
   return (
